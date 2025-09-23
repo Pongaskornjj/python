@@ -1,4 +1,4 @@
-"""
+ """
 #Question 2: Enhanced Guessing Game with Hints
 Develop an enhanced guessing game with intelligent hint system:
 Core Features:
@@ -44,7 +44,7 @@ import random
 
 def get_parity_hint(number):
     if number % 2 == 0:
-        return "HINT: The number is even" 
+        return "HINT: The number is even"
     else:
         return "HINT: The number is odd"
 
@@ -57,9 +57,43 @@ def get_divisibility_hint(number):
         return "HINT: The number is NOT divisible by 3 or 5"
 
 def get_range_hint(number, current_min=1, current_max=100):
-    # Return narrowed range around the number
-    pass
+    low = max(current_min, number - 12)
+    high = min(current_max, number + 12)
+    return f"HINT: The number is between {low} and {high}"
 
 def get_thefirst_digit_hint(number):
-    # Retun the first digit of the number
-    pass
+    first_digit = int(str(number)[0])
+    return f"HINT: The first digit is {first_digit}"
+
+# Generate the random number
+random_number = random.randint(1, 100)
+attempt = 1
+
+# Game loop
+while True:
+    try:
+        guess_number = int(input(f"Attempt {attempt} - Enter your guess: "))
+    except ValueError:
+        print("Please enter a valid number!")
+        continue
+
+    if guess_number == random_number:
+        print(f"Congratulations! You guessed the number in {attempt} attempts.")
+        break
+    elif guess_number > random_number:
+        print("Too high!")
+    else:
+        print("Too low!")
+
+    # Provide hints at specific attempts
+    if attempt == 3:
+        print(get_parity_hint(random_number))
+    elif attempt == 5:
+        print(get_divisibility_hint(random_number))
+    elif attempt == 7:
+        print(get_range_hint(random_number))
+    elif attempt == 10:
+        print(get_thefirst_digit_hint(random_number))
+
+    attempt += 1
+
