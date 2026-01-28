@@ -27,7 +27,7 @@
     // Stops the suggestion window from appearing.
     "editor.suggest.showWords": false,
     // Prevents IntelliSense hovers from showing function/type definitions.
-    "editor.hover.enabled": false,
+    "editor.hover.enabled": "off",
     // Disables GitHub Copilot suggestions.
     "github.copilot.suggestions.enabled": false,
     // Optional: Also disable Copilot for specific languages.
